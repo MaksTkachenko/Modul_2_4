@@ -5,7 +5,7 @@
 # допомогою декоратора contextmanager та за допомогою класу.
 
 import time
-from contextlib import contextmanager
+c
 
 set_range = int(100000)
 
