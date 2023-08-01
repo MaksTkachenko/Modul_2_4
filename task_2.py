@@ -37,4 +37,3 @@ def divide_context(symbol):
 with divide_context(sym):
     for i in range(10, 0, -1):
         print(i, end=' ')
-
