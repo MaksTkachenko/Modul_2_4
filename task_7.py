@@ -5,11 +5,16 @@
 # Вам допоможе модуль `datetime` для вирішення цієї задачі.
 
 import time
+from datetime import datetime, timedelta
 
 
 def rate_limit(max_calls, period):
     def decorator(func):
+        times = []
+
         def wrapper(*args, **kwargs):
+            now = datetime.now()
+            times.append(now)
             start_time = time.time()
             for _ in range(max_calls):
                 result = func(*args, **kwargs)

@@ -12,30 +12,34 @@ import time
 def memoize(func):
     memoize_cache = {}
 
-    def wrapper():
-        if 'result' not in memoize_cache:
-            memoize_cache['result'] = func()
-            print("Result saved")
-        else:
+    def wrapper(*args):
+        if args in memoize_cache:
             print("Already in memory")
-        return memoize_cache['result']
+            return memoize_cache[args]
+        else:
+            result = func(*args)
+            memoize_cache[args] = result
+            print("Result saved")
+            return result
     return wrapper
 
 
 @memoize
-def test_fun():
+def test_fun(x, y):
     res = 0
     for _ in range(100000):
-        res = 12434533 * 76 / 777892 ** 345
+        res = x * 76 / y ** 345
     return res
 
 
-def work_time():
+def work_time(x_2, y_2):
     stat_time = time.time()
-    print(test_fun())
+    print(f"{x_2} * 76 / {y_2} ** 345={test_fun(x_2, y_2)}")
     end_time = time.time()
     print(f"Execution time: {end_time - stat_time} sec\n")
 
 
-for _ in range(5):
-    work_time()
+work_time(125231, 64434)
+work_time(5532342, 765456)
+work_time(125231, 64434)
+work_time(3123, 872)
